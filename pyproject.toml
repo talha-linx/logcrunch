@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "logcrunch"
+version = "0.1.0"
+description = "A parallel CLI tool for parsing and analyzing Apache-style error logs."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Muhammad Islam" }]
+
+[project.scripts]
+logcrunch = "logcrunch.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
