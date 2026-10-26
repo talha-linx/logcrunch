@@ -1,20 +1,16 @@
+[logcrunch_README.md](https://github.com/user-attachments/files/33948521/logcrunch_README.md)
 # logcrunch
-
-**Author:** Muhammad Islam
 
 A parallel command-line tool that parses and analyzes Apache-style error
 logs: level counts, hourly volume, recurring message "templates," and
 statistical anomaly (error-burst) detection — using `multiprocessing` to
-split large files across worker processes. Built as a general-purpose
-software engineering project (packaging, CLI design, concurrency, testing),
-distinct from the data-analysis and web-app projects elsewhere in this
-portfolio.
+split large files across worker processes. Built as a software engineering project covering packaging, CLI design,
+concurrency and testing.
 
 ## Why this project
 
-Most student portfolios are full of CRUD web apps. This one is deliberately
-something else: a small, real installable CLI tool/package that touches a
-different set of fundamentals — file I/O at scale, correct concurrent
+I wanted a project that goes beyond a web app, so I built a small, real
+installable CLI tool that touches a different set of fundamentals — file I/O at scale, correct concurrent
 processing (not just "it runs faster," but "it runs faster and still gives
 the exact same answer"), and command-line tool design.
 
@@ -64,7 +60,7 @@ Anomalous hours (error bursts, z >= 2.0):
 ## Install & run
 
 ```bash
-git clone <this repo>
+git clone https://github.com/talha-linx/logcrunch.git
 cd logcrunch
 pip install -e .          # installs the `logcrunch` command (editable install)
 
@@ -139,11 +135,3 @@ python benchmark/generate_synthetic_log.py --lines 2000000
 python benchmark/run_benchmark.py
 python benchmark/plot_benchmark.py
 ```
-
-## Resume bullet points (pick 2-3)
-
-- Built and packaged a Python CLI tool (`pip install`-able, `argparse`-based) that parses and analyzes log files, with a plugin-free, pure-stdlib implementation.
-- Designed a multiprocessing pipeline that splits large files into line-aligned byte-range chunks for parallel processing, verified by tests to produce results identical to a serial pass.
-- Benchmarked the tool on a 2,000,000-line log, measuring a real 1.85x speedup from parallelization and correctly identifying its saturation point at the machine's core count.
-- Implemented a statistical anomaly detector (z-score over hourly event counts) that correctly flagged 2 injected error bursts in a 2M-line log with a low false-positive rate.
-- Wrote 23 automated tests (stdlib `unittest`) covering parsing, aggregation correctness, chunk-boundary edge cases, and serial/parallel equivalence.
